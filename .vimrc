@@ -36,9 +36,9 @@ endif
 :set laststatus=2
 :set encoding=utf-8
 
-:if filereadable("~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/plugin/powerline.vim")
-:source ~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/plugin/powerline.vim
-:set guifont=Source\ Code\ Pro\ for\ Powerline:h14
-:let g:airline_powerline_fonts=1
-:endif
+if filereadable($HOME."/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/plugin/powerline.vim")
+source ~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/plugin/powerline.vim
+set guifont=Source\ Code\ Pro\ for\ Powerline:h14
+let g:airline_powerline_fonts=1
+endif
 
