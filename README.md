@@ -15,6 +15,8 @@ ln ~/.vim/.vimrc .vimrc
 sudo pip install git+git://github.com/Lokaltog/powerline
 # install python lint
 sudo easy_install flake8
+# install jshint
+npm install jshint
 ```
 
 VimR
