@@ -1,10 +1,28 @@
+" turn filetype detection off and, even if it's not strictly
+" necessary, disable loading of indent scripts and filetype plugins
+filetype off
+filetype plugin indent off
+
+" pathogen runntime injection and help indexing
 call pathogen#infect()
 call pathogen#helptags()
 
+" turn filetype detection, indent scripts and filetype plugins on
+" and syntax highlighting too
+filetype plugin indent on
+syntax on
+
 autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1
 autocmd FileType html,xhtml,xml,htmldjango,jinjahtml,eruby,mako source ~/.vim/bundle/closetag/plugin/closetag.vim
-
 autocmd FileType python set tabstop=8|set shiftwidth=4|set softtabstop=4|set expandtab
+
+" tab length exceptions on some file types
+autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
+
+autocmd FileType html set shiftwidth=2|set tabstop=2|set softtabstop=2|set expandtab
+autocmd FileType javascript set shiftwidth=2|set tabstop=2|set softtabstop=2|set expandtab
 
 highlight link SyntasticError SpellBad
 highlight link SyntasticWarning SpellCap
