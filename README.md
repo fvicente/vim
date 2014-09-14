@@ -10,7 +10,7 @@ cd .vim
 # get submodules
 git pull && git submodule init && git submodule update && git submodule status
 # create symbolic link
-ln ~/.vim/.vimrc ~/.vimrc
+ln -s ~/.vim/.vimrc ~/.vimrc
 # install better fonts script
 sudo pip install git+git://github.com/Lokaltog/powerline
 # install python lint
