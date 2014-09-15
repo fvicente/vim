@@ -1,3 +1,6 @@
+" This must be first, because it changes other options as side effect
+set nocompatible
+
 " turn filetype detection off and, even if it's not strictly
 " necessary, disable loading of indent scripts and filetype plugins
 filetype off
@@ -14,15 +17,12 @@ syntax on
 
 autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1
 autocmd FileType html,xhtml,xml,htmldjango,jinjahtml,eruby,mako source ~/.vim/bundle/closetag/plugin/closetag.vim
-autocmd FileType python set tabstop=8|set shiftwidth=4|set softtabstop=4|set expandtab
+autocmd FileType python setlocal tabstop=8 shiftwidth=4 softtabstop=4 expandtab
 
 " tab length exceptions on some file types
-autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
-
-autocmd FileType html set shiftwidth=2|set tabstop=2|set softtabstop=2|set expandtab
-autocmd FileType javascript set shiftwidth=2|set tabstop=2|set softtabstop=2|set expandtab
 
 highlight link SyntasticError SpellBad
 highlight link SyntasticWarning SpellCap
@@ -39,17 +39,17 @@ let g:syntastic_html_jshint_conf = "$HOME/.jshintrc"
 let g:syntastic_coffeescript_checkers = ["coffeelint"]
 let g:syntastic_cpp_compiler = "g++"
 let g:syntastic_java_checkers = []
-if has("unix")
-  let g:syntastic_error_symbol = "█"
-  let g:syntastic_style_error_symbol = ">"
-  let g:syntastic_warning_symbol = "█"
-  let g:syntastic_style_warning_symbol = ">"
-else
-  let g:syntastic_error_symbol = "X"
-  let g:syntastic_style_error_symbol = ">"
-  let g:syntastic_warning_symbol = "!"
-  let g:syntastic_style_warning_symbol = ">"
-endif
+" if has("unix")
+"   let g:syntastic_error_symbol = "█"
+"   let g:syntastic_style_error_symbol = ">"
+"   let g:syntastic_warning_symbol = "█"
+"   let g:syntastic_style_warning_symbol = ">"
+" else
+"   let g:syntastic_error_symbol = "X"
+"   let g:syntastic_style_error_symbol = ">"
+"   let g:syntastic_warning_symbol = "!"
+"   let g:syntastic_style_warning_symbol = ">"
+" endif
 
 :set laststatus=2
 :set encoding=utf-8
