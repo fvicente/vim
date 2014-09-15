@@ -28,7 +28,7 @@ VimR
 - http://vimr.org
 
 Fonts on Mac (use Font Book to install)
-- https://github.com/Lokaltog/powerline-fonts/tree/master/SourceCodePro
+- https://github.com/Lokaltog/powerline-fonts/tree/master
 
 Add new vim pugins as git submodules:
 ```sh
