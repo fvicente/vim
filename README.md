@@ -21,7 +21,7 @@ $ sudo pip install git+git://github.com/Lokaltog/powerline
 $ sudo easy_install flake8
 
 # install jshint
-$ npm install jshint
+$ sudo npm install -g jshint
 ```
 
 VimR
