@@ -22,6 +22,12 @@ $ sudo easy_install flake8
 
 # install jshint
 $ sudo npm install -g jshint
+
+# make VimR default editor for git comments
+$ sudo vim /usr/bin/vimr
+#!/bin/bash
+open -W -a VimR $1
+$ git config --global core.editor "vimr"
 ```
 
 VimR
