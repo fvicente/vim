@@ -1,5 +1,7 @@
 " This must be first, because it changes other options as side effect
 set nocompatible
+set modeline
+let syntastic_python_flake8_args='--ignore=E501'
 
 " turn filetype detection off and, even if it's not strictly
 " necessary, disable loading of indent scripts and filetype plugins
@@ -20,9 +22,14 @@ autocmd FileType html,xhtml,xml,htmldjango,jinjahtml,eruby,mako source ~/.vim/bu
 autocmd FileType python setlocal tabstop=8 shiftwidth=4 softtabstop=4 expandtab
 
 " tab length exceptions on some file types
-autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+" autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+" autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+autocmd FileType html setlocal shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType htmldjango setlocal shiftwidth=4 tabstop=4 softtabstop=4
+" autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+autocmd FileType javascript setlocal shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType c setlocal shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType h setlocal shiftwidth=4 tabstop=4 softtabstop=4
 
 highlight link SyntasticError SpellBad
 highlight link SyntasticWarning SpellCap
@@ -76,4 +83,11 @@ endif
 :set colorcolumn=+1,+2,+3  " highlight three columns after 'textwidth'
 :highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
 :set colorcolumn=80
+" :colorscheme vividchalk
+" :colorscheme PaperColor
+" :colorscheme codeschool
+:colorscheme desertEx
+" :set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+:set listchars=tab:>-,trail:~,extends:>,precedes:<
+:set list
 
