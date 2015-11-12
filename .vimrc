@@ -84,9 +84,9 @@ endif
 :highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
 :set colorcolumn=80
 " :colorscheme vividchalk
-" :colorscheme PaperColor
+:colorscheme PaperColor
 " :colorscheme codeschool
-:colorscheme desertEx
+" :colorscheme desertEx
 " :set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 :set listchars=tab:>-,trail:~,extends:>,precedes:<
 :set list
