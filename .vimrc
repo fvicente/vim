@@ -90,4 +90,9 @@ endif
 " :set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 :set listchars=tab:>-,trail:~,extends:>,precedes:<
 :set list
+:let g:ctrlp_max_files=0
+:let g:ctrlp_custom_ignore='.git$|\tmp$'
 
+if has("mouse")
+	set mouse=a
+endif
