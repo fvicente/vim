@@ -58,6 +58,9 @@ let g:syntastic_java_checkers = []
 "   let g:syntastic_style_warning_symbol = ">"
 " endif
 
+" jsx
+let g:jsx_ext_required = 0
+
 :set laststatus=2
 :set encoding=utf-8
 
