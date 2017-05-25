@@ -39,3 +39,9 @@ $ cd ~/.vim
 $ git submodule add git://github.com/vim-scripts/supertab.git bundle/supertab
 $ git submodule init && git submodule update
 ```
+
+Update all submodules recursively
+```sh
+git submodule update --recursive --remote
+git submodule update --recursive
+```
