@@ -44,4 +44,5 @@ Update all submodules recursively
 ```sh
 git submodule update --recursive --remote
 git submodule update --recursive
+git submodule foreach git pull origin master
 ```

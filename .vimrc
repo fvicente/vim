@@ -1,7 +1,6 @@
 " This must be first, because it changes other options as side effect
 set nocompatible
 set modeline
-let syntastic_python_flake8_args='--ignore=E501'
 
 " turn filetype detection off and, even if it's not strictly
 " necessary, disable loading of indent scripts and filetype plugins
@@ -31,68 +30,41 @@ autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2 expand
 autocmd FileType c setlocal shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType h setlocal shiftwidth=4 tabstop=4 softtabstop=4
 
-highlight link SyntasticError SpellBad
-highlight link SyntasticWarning SpellCap
+set backspace=indent,eol,start
 
-" Syntastic
-let g:syntastic_enable_signs = 1
-let g:syntastic_cpp_check_header = 1
-let g:syntastic_cpp_no_include_search = 0
-let g:syntastic_coffeescript_checkers = ["coffeelint"]
-let g:syntastic_cpp_compiler = "g++"
-let g:syntastic_java_checkers = []
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
 let g:javascript_plugin_flow = 1
-"
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_loc_list_height = 5
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-" let g:syntastic_error_symbol = '❌'
-" let g:syntastic_error_symbol = '💩'
-" let g:syntastic_error_symbol = '⛔'
-let g:syntastic_error_symbol = '🐞'
-highlight link SyntasticErrorSign SignColumn
-let g:syntastic_style_error_symbol = '⁉️'
-let g:syntastic_warning_symbol = '⚠️'
-let g:syntastic_style_warning_symbol = '💩'
-highlight link SyntasticErrorSign SignColumn
-highlight link SyntasticWarningSign SignColumn
-highlight link SyntasticStyleErrorSign SignColumn
-highlight link SyntasticStyleWarningSign SignColumn
 
-let g:syntastic_javascript_checkers = []
+" Highlight ES6 template strings
+hi link javaScriptTemplateDelim String
+hi link javaScriptTemplateVar Text
+hi link javaScriptTemplateString String
 
-function CheckJavaScriptLinter(filepath, linter)
-	if exists('b:syntastic_checkers')
-		return
-	endif
-	if filereadable(a:filepath)
-		let b:syntastic_checkers = [a:linter]
-		let {'b:syntastic_' . a:linter . '_exec'} = a:filepath
-	endif
-endfunction
-
-function SetupJavaScriptLinter()
-	let l:current_folder = expand('%:p:h')
-	let l:bin_folder = fnamemodify(syntastic#util#findFileInParent('package.json', l:current_folder), ':h')
-	let l:bin_folder = l:bin_folder . '/node_modules/.bin/'
-	call CheckJavaScriptLinter(l:bin_folder . 'standard', 'standard')
-	call CheckJavaScriptLinter(l:bin_folder . 'eslint', 'eslint')
-endfunction
-
-autocmd FileType javascript call SetupJavaScriptLinter()
+" ALE
+let g:ale_python_flake8_args="--ignore=E501"
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\}
+" '❌'
+" '⛔'
+" '⁉️'
+" '⚠️'
+let g:ale_sign_error = '🐞'
+let g:ale_sign_warning = '💩'
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
 
 " jsx
-" let g:jsx_ext_required = 0
+let g:jsx_ext_required = 0
 
 :set laststatus=2
 :set encoding=utf-8
+
+" Airline settings to display ALE errors
+let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#ale#error_symbol = 'E:'
+let g:airline#extensions#ale#warning_symbol = 'W:'
 
 if filereadable($HOME."/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/plugin/powerline.vim")
 	source ~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/plugin/powerline.vim
@@ -115,7 +87,7 @@ endif
 :set colorcolumn=+1        " highlight column after 'textwidth'
 :set colorcolumn=+1,+2,+3  " highlight three columns after 'textwidth'
 :highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
-:set colorcolumn=80
+:set colorcolumn=120
 " :colorscheme vividchalk
 :colorscheme PaperColor
 " :colorscheme codeschool
