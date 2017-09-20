@@ -42,7 +42,7 @@ hi link javaScriptTemplateVar Text
 hi link javaScriptTemplateString String
 
 " ALE
-let g:ale_python_flake8_args="--ignore=E501"
+let g:ale_python_flake8_args = "--ignore=E501"
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \}
@@ -61,11 +61,6 @@ let g:jsx_ext_required = 0
 :set laststatus=2
 :set encoding=utf-8
 
-" Airline settings to display ALE errors
-let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#ale#error_symbol = 'E:'
-let g:airline#extensions#ale#warning_symbol = 'W:'
-
 if filereadable($HOME."/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/plugin/powerline.vim")
 	source ~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/plugin/powerline.vim
 	set guifont=Source\ Code\ Pro\ for\ Powerline:h12
@@ -76,7 +71,7 @@ else
 		set guifont=Source\ Code\ Pro\ for\ Powerline:h12
 		let g:airline_powerline_fonts=1
 	else
- 		if filereadable("/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/plugin/powerline.vim")
+		if filereadable("/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/plugin/powerline.vim")
 			source /usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/plugin/powerline.vim
 			set guifont=Source\ Code\ Pro\ for\ Powerline:h12
 			let g:airline_powerline_fonts=1
@@ -97,10 +92,6 @@ endif
 :set list
 :let g:ctrlp_max_files = 0
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn|DS_Store))$'
-
-if has("mouse")
-	set mouse=a
-endif
 
 " XML formatter
 function! DoFormatXML() range
@@ -134,7 +125,7 @@ function! DoFormatXML() range
 	" Recalculate first and last lines of the edited code
 	let l:newFirstLine=search('<PrettyXML>')
 	let l:newLastLine=search('</PrettyXML>')
-	
+
 	" Get inner range
 	let l:innerFirstLine=l:newFirstLine+1
 	let l:innerLastLine=l:newLastLine-1
@@ -157,7 +148,54 @@ command! -range=% FormatXML <line1>,<line2>call DoFormatXML()
 nmap <silent> <leader>x :%FormatXML<CR>
 vmap <silent> <leader>x :FormatXML<CR>
 
+" Airline settings to display ALE errors
+" Note: following line is not working, using statusline instead
+" let g:airline#extensions#ale#enabled = 1
+call airline#parts#define_function('ALE', 'ALEGetStatusLine')
+call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
+let g:airline_section_error = airline#section#create_right(['ALE'])
+let g:ale_echo_msg_format = '[#%linter%#] %s [%severity%]'
+let g:ale_statusline_format = ['E•%d', 'W•%d', 'OK']
+
+" For a more fancy ale statusline
+function! ALEGetError()
+  let l:res = ale#statusline#Status()
+  if l:res ==# 'OK'
+    return ''
+  else
+    let l:e_w = split(l:res)
+    if len(l:e_w) == 2 || match(l:e_w, 'E') > -1
+      return ' •' . matchstr(l:e_w[0], '\d\+') .' '
+    endif
+  endif
+endfunction
+
+function! ALEGetWarning()
+  let l:res = ale#statusline#Status()
+  if l:res ==# 'OK'
+    return ''
+  else
+    let l:e_w = split(l:res)
+    if len(l:e_w) == 2
+      return ' •' . matchstr(l:e_w[1], '\d\+')
+    elseif match(l:e_w, 'W') > -1
+      return ' •' . matchstr(l:e_w[0], '\d\+')
+    endif
+  endif
+endfunction
+
 " set backup dir to a temp dir
 set backupdir=~/tmp/vim/bkp//
 set directory=~/tmp/vim/swp//
 set undodir=~/tmp/vim/undo//
+
+if has("mouse")
+	set mouse=a
+endif
+
+" automatically save and restore sessions
+let g:session_autosave = 'yes'
+let g:session_autoload = 'yes'
+let g:session_autosave_periodic = 10
+let g:session_autosave_silent = 1
+
