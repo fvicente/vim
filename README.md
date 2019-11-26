@@ -11,6 +11,9 @@ $ cd .vim
 # get submodules
 $ git pull && git submodule init && git submodule update && git submodule status
 
+# working directories
+mkdir -p ~/tmp/vim/bkp && mkdir ~/tmp/vim/swp && mkdir ~/tmp/vim/undo
+
 # create symbolic link
 $ ln -s ~/.vim/.vimrc ~/.vimrc
 
