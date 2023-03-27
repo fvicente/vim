@@ -50,3 +50,9 @@
 [submodule "bundles/vim-closetag"]
 	path = bundles/vim-closetag
 	url = https://github.com/alvan/vim-closetag.git
+[submodule "bundle/vim-closetag"]
+	path = bundle/vim-closetag
+	url = https://github.com/alvan/vim-closetag.git
+[submodule "bundle/delimitMate"]
+	path = bundle/delimitMate
+	url = https://github.com/Raimondi/delimitMate.git
